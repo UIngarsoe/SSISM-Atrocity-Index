@@ -1,9 +1,9 @@
-# app.py — SSISM Atrocity Index v1.1 (LIVE & UNVETOABLE)
+# app.py — SSISM Atrocity Index v1.1 (VOID-FILLED MISSILE)
 import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.set_page_config(page_title="SSISM Atrocity Index", layout="wide", page_icon="fire")
+st.set_page_config(page_title="SSISM Atrocity Index", layout="wide", page_icon="🔥")
 
 st.markdown("# SSISM Atrocity Index")
 st.markdown("### **Quantifying the Human Cost of Veto — #37YearsOfVeto**")
@@ -24,14 +24,14 @@ with col2:
 st.divider()
 
 # Uploaders
-sat_file = st.file_uploader("Upload Satellite (GeoTIFF)", type=["tif", "tiff"])
-osint_file = st.file_uploader("Upload OSINT (CSV)", type=["csv"])
-ground_file = st.file_uploader("Upload Ground Data (CSV)", type=["csv"])
+sat_file = st.file_uploader("📡 Upload Satellite (GeoTIFF)", type=["tif", "tiff"])
+osint_file = st.file_uploader("📱 Upload OSINT (CSV)", type=["csv"])
+ground_file = st.file_uploader("🌍 Upload Ground Data (CSV)", type=["csv"])
 
-if st.button("COMPUTE HCV", type="primary"):
+if st.button("🚀 Compute HCV", type="primary"):
     if sat_file and osint_file and ground_file:
         try:
-            # Simulate real processing
+            # Simulate real processing (replace with your core funcs)
             s = 0.75  # Satellite: high destruction
             o = pd.read_csv(osint_file)['confidence'].mean() if 'confidence' in pd.read_csv(osint_file).columns else 0.7
             g = np.tanh(pd.read_csv(ground_file).mean().mean() / 10000)
@@ -40,7 +40,7 @@ if st.button("COMPUTE HCV", type="primary"):
             h = np.clip(h, 0, 1)
             phi = 1 / (1 + np.exp(-(2.5 * h - 1.0)))
 
-            st.success("VETO EXPOSED")
+            st.success("VETO EXPOSED!")
             col1, col2, col3 = st.columns(3)
             with col1:
                 st.metric("Atrocity Index (H)", f"{h:.2f}", delta="High Risk", delta_color="inverse")
