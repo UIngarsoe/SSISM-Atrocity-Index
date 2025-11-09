@@ -1,0 +1,45 @@
+# app.py
+import streamlit as st
+import pandas as pd
+import numpy as np
+from PIL import Image
+
+st.set_page_config(page_title="SSISM Atrocity Index", layout="wide")
+
+st.title("🔥 SSISM Atrocity Index")
+st.subheader("Quantifying the Human Cost of Veto")
+
+col1, col2 = st.columns(2)
+with col1:
+    st.image("https://i.imgur.com/timeline.png", caption="37 Years of Vetoed Memory")
+with col2:
+    st.markdown("""
+    **Upload data → Compute HCV → Expose the veto**
+    - Satellite imagery
+    - OSINT (Telegram/TikTok)
+    - Ground reports (UNHCR)
+    """)
+
+st.divider()
+
+# Uploaders
+sat_file = st.file_uploader("📡 Upload Satellite (GeoTIFF)", type=["tif", "tiff"])
+osint_file = st.file_uploader("📱 Upload OSINT (CSV)", type=["csv"])
+ground_file = st.file_uploader("🌍 Upload Ground Data (CSV)", type=["csv"])
+
+if st.button("🚀 Compute HCV", type="primary"):
+    if sat_file and osint_file and ground_file:
+        # Dummy computation (replace with real functions later)
+        h = np.random.uniform(0.6, 0.95)
+        phi_a = 1 / (1 + np.exp(-(2.5 * h - 1.0)))
+        
+        st.success("Computation Complete!")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Atrocity Index (H)", f"{h:.2f}", delta="High Risk")
+        with col2:
+            st.metric("Accountability Likelihood (Φ_A)", f"{phi_a:.2%}", delta="Strong Case")
+        
+        st.balloons()
+    else:
+        st.error("Please upload all three files.")
